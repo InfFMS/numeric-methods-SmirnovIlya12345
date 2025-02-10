@@ -1,4 +1,6 @@
 import math
+import numpy as np
+import matplotlib.pyplot as plt
 print('Enter the coordinates of the starting point and the ending point')
 x1=float(input())
 y1=float(input())
@@ -20,3 +22,10 @@ while True:
         where=where1*0.5+where2*0.5
         break
 print(where)
+x=np.linspace(x1,where,2)
+x2=np.linspace(where,x2,2)
+y1=-x*(y1/(where-x1))+y1/(where-x1)*where
+y2=x*(y2/(x2-where))-y2/(x2-where)
+plt.plot(x, y1, color="blue")
+plt.plot(x, y2, color="red")
+plt.show()
