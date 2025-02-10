@@ -1,6 +1,7 @@
 from math import log
 from math import cos
-import numpy
+import numpy as np
+import matplotlib.pyplot as plt
 def expression0(a):
     return a**3-a+1
 def expression1(a):
@@ -46,3 +47,20 @@ for i in range(-1000,1000):
         maxmins4.append(i/100)
         new=i/100
 print(maxmins4)
+fig, axs = plt.subplots(1, 4, figsize=(10, 4))
+x=np.linspace(-10,10,100)
+x2=np.linspace(0.01,10,100)
+x3=np.linspace(-10,5,100)
+y0=x**3-x+1
+y1=x**3-x*2-9*x+9
+y2=x3**2-2.718281828**x3
+y4=np.cos(x)+2*x-3
+axs[0].plot(x, y0, color="blue")
+axs[0].set_title("y = x**3-x+1")
+axs[1].plot(x, y1, color="blue")
+axs[1].set_title("y = a**3-a**2-a*9+9")
+axs[2].plot(x3, y2, color="blue")
+axs[2].set_title("y = x**2-2.718281828**x")
+axs[3].plot(x, y4, color="blue")
+axs[3].set_title("y = cos(x)+2*x-3")
+plt.show()
