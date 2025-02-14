@@ -22,31 +22,47 @@ for i in range(-1000,1000):
     if expression0(new)*expression0(i/100)<0:
         maxmins0.append(i/100)
         new=i/100
-print(maxmins0)
 new=-10
 for i in range(-1000,1000):
     if expression1(new)*expression1(i/100)<0:
         maxmins1.append(i/100)
         new=i/100
-print(maxmins1)
 new=-10
 for i in range(-1000,1000):
     if expression2(new)*expression2(i/100)<0:
         maxmins2.append(i/100)
         new=i/100
-print(maxmins2)
-new=0.1
-for i in range(1,1000):
-    if expression3(new)*expression3(i/100)<0:
-        maxmins3.append(i/100)
-        new=i/100
-print(maxmins3)
-new=-10
-for i in range(-1000,1000):
-    if expression4(new)*expression4(i/100)<0:
-        maxmins4.append(i/100)
-        new=i/100
-print(maxmins4)
+a=0.01
+b=10.01
+for i in range(10):
+    mi=a*(10-i)/10+b*i/10
+    ma=a*(9-i)/10+b*(i+1)/10
+    if expression3(mi)*expression3(ma)<0:
+        while True:
+            if ma-mi>0.01:
+                if expression3(mi)*expression3(mi*0.5+ma*0.5)<0:
+                    ma=mi*0.5+ma*0.5
+                else:
+                    mi=mi*0.5+ma*0.5
+            else:
+                maxmins3.append(round(mi*0.5+ma*0.5,2))
+                break
+a=-10
+b=10
+for i in range(10):
+    mi=a*(10-i)/10+b*i/10
+    ma=a*(9-i)/10+b*(i+1)/10
+    if expression4(mi)*expression4(ma)<0:
+        while True:
+            if ma-mi>0.01:
+                if expression4(mi)*expression4(mi*0.5+ma*0.5)<0:
+                    ma=mi*0.5+ma*0.5
+                else:
+                    mi=mi*0.5+ma*0.5
+            else:
+                maxmins4.append(round(mi*0.5+ma*0.5,2))
+                break
+print(maxmins0,maxmins1,maxmins2,maxmins3,maxmins4,sep='\n')
 fig, axs = plt.subplots(1, 4, figsize=(10, 4))
 x=np.linspace(-10,10,100)
 x2=np.linspace(0.01,10,100)
