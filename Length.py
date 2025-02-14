@@ -22,10 +22,13 @@ while True:
         where=where1*0.5+where2*0.5
         break
 print(where)
-x=np.linspace(x1,where,2)
-x2=np.linspace(where,x2,2)
-y1=-x*(y1/(where-x1))+y1/(where-x1)*where
-y2=x*(y2/(x2-where))-y2/(x2-where)
-plt.plot(x, y1, color="blue")
-plt.plot(x, y2, color="red")
+xfirst=np.linspace(x1,where,2)
+xsecond=np.linspace(where,x2,2)
+xgeneral=np.linspace(x1,x2,2)
+yfirst=-xfirst*y1/(where-x1)+where*y1/(where-x1)
+ysecond=xsecond*y2/(x2-where)-x2*y2/(x2-where)
+y0=0*xgeneral
+plt.plot(xfirst, yfirst, color="blue")
+plt.plot(xsecond, ysecond+y2, color="red")
+plt.plot(xgeneral, y0, color="black")
 plt.show()
