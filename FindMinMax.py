@@ -6,14 +6,15 @@ area2=0
 area3=0
 area4=0
 area5=0
-for i in range(int(round(np.pi*10000,0))):
-    area1+=abs(math.sin(2*(i/10000))+0.5-0.2*i*i/100000000)/10000
-for i in range(int(round(np.pi*5000,0)),int(round(np.pi*5000,0))):
-    area2+=abs(math.cos(i/10000)+0.5-0.5*i*i/100000000)/10000
+a_lot=10000
+for i in range(int(round(np.pi*a_lot,0))):
+    area1+=abs(math.sin(2*(i/a_lot))+0.5-0.2*i*i/(a_lot**2))/a_lot
+for i in range(int(round(np.pi*a_lot/2,0)),int(round(np.pi*a_lot/2,0))):
+    area2+=abs(math.cos(i/a_lot)+0.5-0.5*i*i/(a_lot**2))/a_lot
 for i in range(-20000,20000):
-    area3+=abs(2.718281828**(-i*i/100000000)+0.5-0.3*((i/10000)**3))/10000
-    area4+=abs(2.718281828**(-i*i/100000000)+1-0.2*math.sin(3*i/10000))/10000
-    area5+=abs(2.718281828**(-(i+10000)*(i+10000)/100000000)+2.718281828**(-(i-10000)*(i-10000)/100000000)+0.5-0.3*i*i/100000000)/10000
+    area3+=abs(math.e**(-i*i/(a_lot**2))+0.5-0.3*((i/a_lot)**3))/a_lot
+    area4+=abs(math.e**(-i*i/(a_lot**2))+1-0.2*math.sin(3*i/a_lot))/a_lot
+    area5+=abs(math.e**(-(i+a_lot)*(i+a_lot)/(a_lot**2))+math.e**(-(i-a_lot)*(i-a_lot)/(a_lot**2))+0.5-0.3*i*i/(a_lot**2))/a_lot
 print("Klyaksys' areas are:",area1,area2,area3,area4,area5)
 fig, axs = plt.subplots(1, 5, figsize=(10, 4))
 x=np.linspace(0,3.1416,100)
