@@ -10,19 +10,12 @@ y2=float(input())
 # Частное скоростей света
 print('Enter the optic density of the second material relative to the first material')
 n=float(input())
-where1=x1
-where2=x2
-while True:
-    if where2-where1>0.000001:
-        optdist1=math.sqrt((x1-where1)**2+y1**2)+math.sqrt((x2-where1)**2+(-y2)**2)*n
-        optdist2=math.sqrt((x1-where2)**2+y1**2)+math.sqrt((x2-where2)**2+(-y2)**2)*n
-        if optdist1<optdist2:
-            where2=where2*0.8+where1*0.2
-        else:
-            where1=where1*0.8+where2*0.2
-    else:
-        where=where1*0.5+where2*0.5
-        break
+where=x1
+def optdist(where):
+    return np.sqrt((x1-where)**2+y1**2)+n*np.sqrt((x2-where)**2+y2**2)
+while optdist(where)>optdist(where+(x2-x1)/1000):
+    where+=(x2-x1)/1000
+    print(where,optdist(where))
 print(where)
 print('Angle:', np.atan(y1/where))
 xfirst=np.linspace(x1,where,2)
